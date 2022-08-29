@@ -17,12 +17,7 @@ def novoalfabeto(key, displacement):
     return alfabetodeslocado
 
 
-def criptografar():
-
-    mensagem = input("Mensagem(Apenas letras e sem acentos): ").strip()
-    chave, deslocamento = input("Chave(0 a 25) e deslocamento(D - Direita e E - Esquerda): ").strip().upper().split()
-    chave = int(chave)
-    
+def criptografar(mensagem, chave, deslocamento):
     alfabetodeslocado = novoalfabeto(chave, deslocamento)
     mensagemCriptografada = ""
     tamanho = len(mensagem)
@@ -39,38 +34,49 @@ def criptografar():
     return mensagemCriptografada
 
 
-def decodificar():
-
-    cifra = input("Mensagem criptografada: ").strip()
-    chave, deslocamento = input("Chave(0 a 25) e deslocamento(D - Direita e E - Esquerda): ").strip().upper().split()
-    chave = int(chave)
-
+def decodificar(mensagemCifrada, chave, deslocamento):
     alfabetodeslocado = novoalfabeto(chave, deslocamento)
     mensagemDescriptografada = ""
-    tamanho = len(cifra)
+    tamanho = len(mensagemCifrada)
 
     for j in range(0, tamanho):
         for i in range(0, 26):
-            if cifra[j].upper() == alfabetodeslocado[i]:
-                if cifra[j].isupper():
+            if mensagemCifrada[j].upper() == alfabetodeslocado[i]:
+                if mensagemCifrada[j].isupper():
                     mensagemDescriptografada+=alfabeto[i]
                 else:
                     mensagemDescriptografada+=alfabeto[i].lower()
-        if cifra[j] == ' ': mensagemDescriptografada+=cifra[j]
+        if mensagemCifrada[j] == ' ': mensagemDescriptografada+=mensagemCifrada[j]
 
     return mensagemDescriptografada
+
+
+def criptoanalise(mensagemCifrada):
+    for k in range(0, 26):
+        print(f"Chave: {k} e Deslocamento: {'D'} = {decodificar(mensagemCifrada, k, 'D')}", end=' | ')
+        print(f"Chave: {k} e Deslocamento: {'E'} = {decodificar(mensagemCifrada, k, 'E')}")
 
 
 def main():
 
     while True:
         print("Escolha uma das opções abaixo: ")
-        print("[0] - Criptografar\n[1] - Decodificar\n[2] - Sair do programa")
+        print("[0] - Criptografar\n[1] - Decodificar\n[2] - Criptoanálise\n[3] - Sair do programa")
         op = input("-> ")
         if op == '0':
-            print(f"Mensagem criptografada: {criptografar()}")
+            mensagem = input("Mensagem(Apenas letras e sem acentos): ").strip()
+            chave, deslocamento = input("Chave(0 a 25) e deslocamento(D - Direita e E - Esquerda): ").strip().upper().split()
+            chave = int(chave)
+            print(f"Mensagem criptografada: {criptografar(mensagem, chave, deslocamento)}")
         elif op == '1':
-            print(f"Mensagem descriptografada: {decodificar()}")
-        else: break
-
+            mensagemCifrada = input("Mensagem criptografada: ").strip()
+            chave, deslocamento = input("Chave(0 a 25) e deslocamento(D - Direita e E - Esquerda): ").strip().upper().split()
+            chave = int(chave)
+            print(f"Mensagem descriptografada: {decodificar(mensagemCifrada, chave, deslocamento)}")
+        elif op == '2':
+            mensagemCifrada = input("Mensagem criptografada: ").strip()
+            criptoanalise(mensagemCifrada)
+        elif op == '3': 
+            break
 main()
+
