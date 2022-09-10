@@ -2,9 +2,9 @@ alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
 
 
 def novoalfabeto(key, displacement):
-
     letrasdeslocadas = [] 
     alfabetodeslocado = []
+    
     if displacement == 'D':
         for i in range(-key, 0, 1):
             letrasdeslocadas.append(alfabeto[i])
