@@ -29,12 +29,12 @@ def criptografar(mensagem, chave, deslocamento):
                     mensagemCriptografada+=alfabetodeslocado[i]
                 else:
                     mensagemCriptografada+=alfabetodeslocado[i].lower()
-        if mensagem[j] == ' ': mensagemCriptografada+=mensagem[j]
+        if mensagem[j] == ' ' or mensagem[j] == '\n': mensagemCriptografada+=mensagem[j]
 
     return mensagemCriptografada
 
 
-def decodificar(mensagemCifrada, chave, deslocamento):
+def descriptografar(mensagemCifrada, chave, deslocamento):
     alfabetodeslocado = novoalfabeto(chave, deslocamento)
     mensagemDescriptografada = ""
     tamanho = len(mensagemCifrada)
@@ -46,12 +46,12 @@ def decodificar(mensagemCifrada, chave, deslocamento):
                     mensagemDescriptografada+=alfabeto[i]
                 else:
                     mensagemDescriptografada+=alfabeto[i].lower()
-        if mensagemCifrada[j] == ' ': mensagemDescriptografada+=mensagemCifrada[j]
+        if mensagemCifrada[j] == ' ' or mensagemCifrada[j] == '\n': mensagemDescriptografada+=mensagemCifrada[j]
 
     return mensagemDescriptografada
 
 
 def criptoanálise(mensagemCifrada):
     for k in range(0, 26):
-        print(f"Chave: {k} e Deslocamento: {'D'} = {decodificar(mensagemCifrada, k, 'D')}", end=' | ')
-        print(f"Chave: {k} e Deslocamento: {'E'} = {decodificar(mensagemCifrada, k, 'E')}")
+        print(f"Chave: {k} e Deslocamento: {'D'}:\n{descriptografar(mensagemCifrada, k, 'D')}")
+        print(f"Chave: {k} e Deslocamento: {'E'}:\n{descriptografar(mensagemCifrada, k, 'E')}")
