@@ -8,23 +8,24 @@ def cria_interface():
     # Tema 
     sg.theme('DarkBlue2')
 
+    #janelas
     def criar_menu():
         layoutMenu = [ 
-        [sg.Text("Bem-vindo ao programa de criptografia de Cifra de César\nPor favor selecione uma das três opções a baixo")],
-        [sg.Button("Criptografar", size=(15, 2), expand_x=True)],
-        [sg.Button("Descriptografar", size=(15, 2), expand_x=True)],
-        [sg.Button("Criptoanálise", size=(15, 2), expand_x=True)]
-    ]
+            [sg.Text("Bem-vindo ao programa de criptografia de Cifra de César\nPor favor selecione uma das três opções a baixo")],
+            [sg.Button("Criptografar", size=(15, 2), expand_x=True)],
+            [sg.Button("Descriptografar", size=(15, 2), expand_x=True)],
+            [sg.Button("Criptoanálise", size=(15, 2), expand_x=True)]
+        ]
         return sg.Window("Cifra de César", layoutMenu, finalize=True)
 
     def criar_janela_criptografar():
         layoutCriptografar = [
             [sg.Text("Informe a mensagem a ser Criptografada:")], 
-            [sg.Multiline(key="mensagem", size=(50, 10))],
+            [sg.Multiline(key="mensagem", auto_refresh=True, size=(50, 10))],
             [sg.Text("Informe a chave(0 a 25)"), sg.Input(key="chave", size=(2, 0)), sg.Checkbox("Esquerda"), sg.Checkbox("Direita")],
             [sg.Button("Codificar")],
             [sg.Text("Mensagem Descriptografada")],
-            [sg.Multiline(size=(50, 10),  do_not_clear=False, reroute_stdout=True)],
+            [sg.Multiline(size=(50, 10), do_not_clear=False, reroute_stdout=True)],
             [sg.Button("Voltar")]
         ]
         return sg.Window("Criptografar", layoutCriptografar, finalize=True)
@@ -32,7 +33,7 @@ def cria_interface():
     def criar_janela_descriptografar():
         layoutDescriptografar = [
             [sg.Text("Informe a mensagem Criptografada:")],
-            [sg.Multiline(key="mensagem", size=(50, 10))],
+            [sg.Multiline(key="mensagem", auto_refresh=True, size=(50, 10))],
             [sg.Text("Informe a chave(0 a 25)"), sg.Input(key="chave", size=(2, 0)), sg.Checkbox("Esquerda"), sg.Checkbox("Direita")],
             [sg.Button("Decodificar")],
             [sg.Text("Mensagem Descriptografada")],
@@ -44,7 +45,7 @@ def cria_interface():
     def criar_janela_criptoanálise():
         layoutCriptoanalise = [
             [sg.Text("Informe a mensagem Criptografada:")],
-            [sg.Multiline(key="mensagem", size=(50, 10))],
+            [sg.Multiline(key="mensagem", auto_refresh=True, size=(50, 10))],
             [sg.Button("Criptoanálisar")],
             [sg.Multiline(size=(50, 10),  do_not_clear=False, reroute_stdout=True)],
             [sg.Button("Voltar")]
@@ -55,15 +56,13 @@ def cria_interface():
 
 
     while True:
-
         janela, evento, valores = sg.read_all_windows()
-
-        #print(f'{janela} {evento} {valores}') 
 
         if evento == sg.WINDOW_CLOSED:
             janela.close()
             exit() 
 
+        #Criptografar 
         if evento == "Criptografar" and janela == menu:
             janela.hide() # Oculta a janela da tela e da barra de tarefas.
             janela_criptografar = criar_janela_criptografar()
@@ -77,6 +76,7 @@ def cria_interface():
             janela_criptografar.close()
             menu.UnHide()
 
+        #Descriptografar
         if evento == "Descriptografar":
             janela.hide()
             janela_descriptografar = criar_janela_descriptografar()
@@ -90,6 +90,7 @@ def cria_interface():
             janela_descriptografar.close()
             menu.UnHide()
 
+        #Criptoanálise
         if evento == "Criptoanálise":
             janela.hide()
             janela_criptoanálise = criar_janela_criptoanálise()
