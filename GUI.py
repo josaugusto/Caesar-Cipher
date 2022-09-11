@@ -24,7 +24,7 @@ def cria_interface():
             [sg.Multiline(key="mensagem", auto_refresh=True, size=(50, 10))],
             [sg.Text("Informe a chave(0 a 25)"), sg.Input(key="chave", size=(2, 0)), sg.Checkbox("Esquerda"), sg.Checkbox("Direita")],
             [sg.Button("Codificar")],
-            [sg.Text("Mensagem Descriptografada")],
+            [sg.Text("Mensagem Criptografada:")],
             [sg.Multiline(size=(50, 10), do_not_clear=False, reroute_stdout=True)],
             [sg.Button("Voltar")]
         ]
@@ -36,7 +36,7 @@ def cria_interface():
             [sg.Multiline(key="mensagem", auto_refresh=True, size=(50, 10))],
             [sg.Text("Informe a chave(0 a 25)"), sg.Input(key="chave", size=(2, 0)), sg.Checkbox("Esquerda"), sg.Checkbox("Direita")],
             [sg.Button("Decodificar")],
-            [sg.Text("Mensagem Descriptografada")],
+            [sg.Text("Mensagem Descriptografada:")],
             [sg.Multiline(size=(50, 10),  do_not_clear=False, reroute_stdout=True)],
             [sg.Button("Voltar")]
         ]
@@ -50,7 +50,7 @@ def cria_interface():
             [sg.Multiline(size=(50, 10),  do_not_clear=False, reroute_stdout=True)],
             [sg.Button("Voltar")]
         ]
-        return sg.Window("Criptoanálisar", layoutCriptoanalise, finalize=True)
+        return sg.Window("Criptoanálise", layoutCriptoanalise, finalize=True)
 
     menu, janela_criptografar, janela_descriptografar, janela_criptoanálise = criar_menu(), None, None, None
 
@@ -72,10 +72,9 @@ def cria_interface():
             elif valores["chave"] == '' or not(0 <= int(valores["chave"]) <= 25):
                 sg.popup("Informe um valor válido para a chave(0 a 25)", title="Erro")
             elif valores[0] == True:
-                mensagemCriptografada = criptografar(valores["mensagem"], int(valores["chave"]), 'E')
+                print(f"{criptografar(valores['mensagem'], int(valores['chave']), 'E')}")
             elif valores[1] == True:
-                mensagemCriptografada = criptografar(valores["mensagem"], int(valores["chave"]), 'D')
-            print(f'{mensagemCriptografada}')
+                print(f"{criptografar(valores['mensagem'], int(valores['chave']), 'D')}")
         elif evento == "Voltar" and janela == janela_criptografar:
             janela_criptografar.close()
             menu.UnHide()
@@ -90,10 +89,10 @@ def cria_interface():
             elif valores["chave"] == '' or not(0 <= int(valores["chave"]) <= 25):
                 sg.popup("Informe um valor válido para a chave(0 a 25)", title="Erro")
             elif valores[0] == True:
-                mensagemDescriptografada = descriptografar(valores["mensagem"], int(valores["chave"]), 'E')
+                print(f"{descriptografar(valores['mensagem'], int(valores['chave']), 'E')}")
             else:
-                mensagemDescriptografada = descriptografar(valores["mensagem"], int(valores["chave"]), 'D')
-            print(f'{mensagemDescriptografada}')
+                print(f"{descriptografar(valores['mensagem'], int(valores['chave']), 'D')}")
+            
         elif evento == "Voltar" and janela == janela_descriptografar:
             janela_descriptografar.close()
             menu.UnHide()
