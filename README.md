@@ -11,3 +11,7 @@
 ## Janela Descriptografar
 
 ![janela_Descriptografar](https://user-images.githubusercontent.com/79456742/189545948-a65c7662-2e57-4b9c-87bf-1c5455844acb.png)
+
+## Janela Criptoánalise
+
+![janela_Criptoanálise](https://user-images.githubusercontent.com/79456742/189545992-0a92c1fb-8f43-4e15-be8b-29fc75bdc074.png)
