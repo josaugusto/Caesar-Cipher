@@ -53,5 +53,5 @@ def descriptografar(mensagemCifrada, chave, deslocamento):
 
 def criptoanálise(mensagemCifrada):
     for k in range(0, 26):
-        print(f"Chave: {k} e Deslocamento: {'D'}:\n{descriptografar(mensagemCifrada, k, 'D')}")
-        print(f"Chave: {k} e Deslocamento: {'E'}:\n{descriptografar(mensagemCifrada, k, 'E')}")
+        print(f"Chave: {k} Esquerda:\n{descriptografar(mensagemCifrada, k, 'E')}")
+        print(f"Chave: {k} Direita:\n{descriptografar(mensagemCifrada, k, 'D')}")
