@@ -67,7 +67,11 @@ def cria_interface():
             janela.hide() # Oculta a janela da tela e da barra de tarefas.
             janela_criptografar = criar_janela_criptografar()
         elif evento == "Codificar":
-            if valores[0] == True:
+            if valores[0] == True and valores[1] == True or valores[0] == valores[1] == False:
+                sg.popup("ERRO!, Marque uma das duas opções(Esquerda ou Direita)", title="Erro")
+            elif valores["chave"] == '' or not(0 <= int(valores["chave"]) <= 25):
+                sg.popup("Informe um valor válido para a chave(0 a 25)", title="Erro")
+            elif valores[0] == True:
                 mensagemCriptografada = criptografar(valores["mensagem"], int(valores["chave"]), 'E')
             elif valores[1] == True:
                 mensagemCriptografada = criptografar(valores["mensagem"], int(valores["chave"]), 'D')
@@ -81,9 +85,13 @@ def cria_interface():
             janela.hide()
             janela_descriptografar = criar_janela_descriptografar()
         elif evento == "Decodificar":
-            if valores[0] == True:
+            if valores[0] == True and valores[1] == True or valores[0] == valores[1] == False:
+                sg.popup("ERRO!, Marque uma das duas opções(Esquerda ou Direita)", title="Erro")
+            elif valores["chave"] == '' or not(0 <= int(valores["chave"]) <= 25):
+                sg.popup("Informe um valor válido para a chave(0 a 25)", title="Erro")
+            elif valores[0] == True:
                 mensagemDescriptografada = descriptografar(valores["mensagem"], int(valores["chave"]), 'E')
-            elif valores[1] == True:
+            else:
                 mensagemDescriptografada = descriptografar(valores["mensagem"], int(valores["chave"]), 'D')
             print(f'{mensagemDescriptografada}')
         elif evento == "Voltar" and janela == janela_descriptografar:
