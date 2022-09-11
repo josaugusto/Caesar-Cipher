@@ -92,7 +92,6 @@ def cria_interface():
                 print(f"{descriptografar(valores['mensagem'], int(valores['chave']), 'E')}")
             else:
                 print(f"{descriptografar(valores['mensagem'], int(valores['chave']), 'D')}")
-            
         elif evento == "Voltar" and janela == janela_descriptografar:
             janela_descriptografar.close()
             menu.UnHide()
