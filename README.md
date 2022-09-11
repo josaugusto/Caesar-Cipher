@@ -7,3 +7,7 @@
 ## Janela Criptografar
 
 ![janela_Criptografar](https://user-images.githubusercontent.com/79456742/189545868-cbb866a7-2f20-4dd7-98e5-498f022db01d.png)
+
+## Janela Descriptografar
+
+![janela_Descriptografar](https://user-images.githubusercontent.com/79456742/189545948-a65c7662-2e57-4b9c-87bf-1c5455844acb.png)
