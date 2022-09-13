@@ -64,7 +64,7 @@ def cria_interface():
 
         #Criptografar 
         if evento == "Criptografar" and janela == menu:
-            janela.hide() # Oculta a janela da tela e da barra de tarefas.
+            janela.hide() 
             janela_criptografar = criar_janela_criptografar()
         elif evento == "Codificar":
             if valores[0] == True and valores[1] == True or valores[0] == valores[1] == False:
@@ -92,6 +92,7 @@ def cria_interface():
                 print(f"{descriptografar(valores['mensagem'], int(valores['chave']), 'E')}")
             else:
                 print(f"{descriptografar(valores['mensagem'], int(valores['chave']), 'D')}")
+            
         elif evento == "Voltar" and janela == janela_descriptografar:
             janela_descriptografar.close()
             menu.UnHide()
