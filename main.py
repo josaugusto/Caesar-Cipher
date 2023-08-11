@@ -20,9 +20,8 @@ def novoalfabeto(key, displacement):
 def criptografar(mensagem, chave, deslocamento):
     alfabetodeslocado = novoalfabeto(chave, deslocamento)
     mensagemCriptografada = ""
-    tamanho = len(mensagem)
 
-    for j in range(0, tamanho):
+    for j in range(0, len(mensagem)):
         for i in range(0, 26):
             if mensagem[j].upper() == alfabeto[i]:
                 if mensagem[j].isupper():
@@ -37,9 +36,8 @@ def criptografar(mensagem, chave, deslocamento):
 def descriptografar(mensagemCifrada, chave, deslocamento):
     alfabetodeslocado = novoalfabeto(chave, deslocamento)
     mensagemDescriptografada = ""
-    tamanho = len(mensagemCifrada)
 
-    for j in range(0, tamanho):
+    for j in range(0, len(mensagemCifrada)):
         for i in range(0, 26):
             if mensagemCifrada[j].upper() == alfabetodeslocado[i]:
                 if mensagemCifrada[j].isupper():
