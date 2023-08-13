@@ -1,18 +1,18 @@
-alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] # 26 letras
+alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
 
 
-def novoalfabeto(key, displacement):
+def novoalfabeto(chave, deslocamento):
     letrasdeslocadas = [] 
     alfabetodeslocado = []
     
-    if displacement == 'D':
-        for i in range(-key, 0, 1):
+    if deslocamento == 'D':
+        for i in range(-chave, 0, 1):
             letrasdeslocadas.append(alfabeto[i])
-        alfabetodeslocado = letrasdeslocadas + alfabeto[0:26-key]    
+        alfabetodeslocado = letrasdeslocadas + alfabeto[0:26-chave]    
     else:
-        for i in range(key-key, key):
+        for i in range(0, chave):
             letrasdeslocadas.append(alfabeto[i])
-        alfabetodeslocado = alfabeto[key::] + letrasdeslocadas
+        alfabetodeslocado = alfabeto[chave::] + letrasdeslocadas
         
     return alfabetodeslocado
 
