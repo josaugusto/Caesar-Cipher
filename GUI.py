@@ -3,7 +3,7 @@ from sys import exit
 from main import *
 
 
-def cria_interface():
+def criar_interface():
 
     # Tema 
     sg.theme('DarkBlue2')
@@ -42,7 +42,7 @@ def cria_interface():
         ]
         return sg.Window('Descriptografar', layoutDescriptografar, finalize=True)
 
-    def criar_janela_criptoanálise():
+    def criar_janela_criptoanalise():
         layoutCriptoanalise = [
             [sg.Text('Informe a mensagem Criptografada:')],
             [sg.Multiline(key='mensagem', auto_refresh=True, size=(50, 10))],
@@ -99,10 +99,10 @@ def cria_interface():
         #Criptoanálise
         if evento == 'Criptoanálise':
             janela.hide()
-            janela_criptoanálise = criar_janela_criptoanálise()
+            janela_criptoanálise = criar_janela_criptoanalise()
         elif evento == 'Criptoanálisar':
-            criptoanálise(valores['mensagem'])
+            criptoanalise(valores['mensagem'])
         elif evento == 'Voltar' and janela == janela_criptoanálise:
             janela.close()
             menu.UnHide()
-cria_interface()
+criar_interface()
