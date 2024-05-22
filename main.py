@@ -1,55 +1,52 @@
 alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
-
-
-def novoalfabeto(chave, deslocamento):
-    letrasdeslocadas = [] 
-    alfabetodeslocado = []
+letras_deslocadas = [] 
+alfabeto_deslocado = []
+    
+def novo_alfabeto(chave, deslocamento):
     
     if deslocamento == 'D':
-        for i in range(-chave, 0, 1):
-            letrasdeslocadas.append(alfabeto[i])
-        alfabetodeslocado = letrasdeslocadas + alfabeto[0:26-chave]    
+        letras_deslocadas = alfabeto[-chave::1]
+        alfabeto_deslocado = letras_deslocadas + alfabeto[0:26-chave]    
     else:
-        for i in range(0, chave):
-            letrasdeslocadas.append(alfabeto[i])
-        alfabetodeslocado = alfabeto[chave::] + letrasdeslocadas
+        letras_deslocadas = alfabeto[0:chave]
+        alfabeto_deslocado = alfabeto[chave::] + letras_deslocadas
         
-    return alfabetodeslocado
+    return alfabeto_deslocado
 
 
 def criptografar(mensagem, chave, deslocamento):
-    alfabetodeslocado = novoalfabeto(chave, deslocamento)
-    mensagemCriptografada = ""
+    alfabeto_deslocado = novo_alfabeto(chave, deslocamento)
+    mensagem_criptografada = ""
 
     for j in range(0, len(mensagem)):
         for i in range(0, 26):
             if mensagem[j].upper() == alfabeto[i]:
                 if mensagem[j].isupper():
-                    mensagemCriptografada+=alfabetodeslocado[i]
+                    mensagem_criptografada+=alfabeto_deslocado[i]
                 else:
-                    mensagemCriptografada+=alfabetodeslocado[i].lower()
-        if mensagem[j] == ' ' or mensagem[j] == '\n': mensagemCriptografada+=mensagem[j]
+                    mensagem_criptografada+=alfabeto_deslocado[i].lower()
+        if mensagem[j] == ' ' or mensagem[j] == '\n': mensagem_criptografada+=mensagem[j]
 
-    return mensagemCriptografada
+    return mensagem_criptografada
 
 
-def descriptografar(mensagemCifrada, chave, deslocamento):
-    alfabetodeslocado = novoalfabeto(chave, deslocamento)
-    mensagemDescriptografada = ""
+def descriptografar(mensagem_cifrada, chave, deslocamento):
+    alfabeto_deslocado = novo_alfabeto(chave, deslocamento)
+    mensagem_descriptografada = ""
 
-    for j in range(0, len(mensagemCifrada)):
+    for j in range(0, len(mensagem_cifrada)):
         for i in range(0, 26):
-            if mensagemCifrada[j].upper() == alfabetodeslocado[i]:
-                if mensagemCifrada[j].isupper():
-                    mensagemDescriptografada+=alfabeto[i]
+            if mensagem_cifrada[j].upper() == alfabeto_deslocado[i]:
+                if mensagem_cifrada[j].isupper():
+                    mensagem_descriptografada+=alfabeto[i]
                 else:
-                    mensagemDescriptografada+=alfabeto[i].lower()
-        if mensagemCifrada[j] == ' ' or mensagemCifrada[j] == '\n': mensagemDescriptografada+=mensagemCifrada[j]
+                    mensagem_descriptografada+=alfabeto[i].lower()
+        if mensagem_cifrada[j] == ' ' or mensagem_cifrada[j] == '\n': mensagem_descriptografada+=mensagem_cifrada[j]
 
-    return mensagemDescriptografada
+    return mensagem_descriptografada
 
 
-def criptoanálise(mensagemCifrada):
+def criptoanalise(mensagem_cifrada):
     for k in range(0, 26):
-        print(f"Chave: {k} Esquerda:\n{descriptografar(mensagemCifrada, k, 'E')}")
-        print(f"Chave: {k} Direita:\n{descriptografar(mensagemCifrada, k, 'D')}")
+        print(f"Chave: {k} Esquerda:\n{descriptografar(mensagem_cifrada, k, 'E')}")
+        print(f"Chave: {k} Direita:\n{descriptografar(mensagem_cifrada, k, 'D')}")
