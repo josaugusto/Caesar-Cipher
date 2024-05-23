@@ -2,12 +2,8 @@ alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
     
 def novo_alfabeto(chave, deslocamento):
     if deslocamento == 'D':
-        letras_deslocadas = alfabeto[-chave::1]
-        alfabeto_deslocado = letras_deslocadas + alfabeto[0:26-chave]    
-    else:
-        letras_deslocadas = alfabeto[0:chave]
-        alfabeto_deslocado = alfabeto[chave::] + letras_deslocadas
-    return alfabeto_deslocado
+        chave = -chave
+    return alfabeto[chave:] + alfabeto[:chave]
 
 def criptografar(mensagem, chave, deslocamento):
     alfabeto_deslocado = novo_alfabeto(chave, deslocamento)
