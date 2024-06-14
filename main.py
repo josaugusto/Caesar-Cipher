@@ -7,6 +7,7 @@ def novo_alfabeto(chave, deslocamento):
     return alfabeto[chave:] + alfabeto[:chave]
 
 def aux_cripto_descripto(mensagem, alfabeto, alfabeto_deslocado):
+    mensagem_processada = ""
     for j in range(0, len(mensagem)):
         for i in range(0, 26):
             if mensagem[j].upper() == alfabeto[i]:
